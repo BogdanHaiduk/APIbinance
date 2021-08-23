@@ -1,0 +1,80 @@
+FORMAT: 1A
+HOST: https://polls.apiblueprint.org/
+
+# Doc APIbinance
+
+### Запуск потока на обновление БД [POST]
+
+URL: [localhost:8080/startUpdate]
+
++ Response 200 (application/json)
+
+
+### Получение OrderBook по переданной паре и с указанным depth [GET]
+
+URL: [localhost:8080/orderBook?symbol=HOTUSDT&limit=10]
+
+        
++ Response 200 (application/json)
+
+        {
+            "lastUpdateId": 2.2018592084E10,
+            "E": 1.629635802858E12,
+            "T": 1.629635802855E12,
+            "bids": [
+                [
+                    "0.010905",
+                    "262183"
+                ],
+                [
+                    "0.010460",
+                    "10000"
+                ],
+                [
+                    "0.005600",
+                    "6261637"
+                ],
+                [
+                    "0.003174",
+                    "12546755"
+                ]
+            ],
+            "asks": [
+                [
+                    "0.016400",
+                    "381097"
+                ],
+                    [
+                "0.019000",
+                    "10000"
+                ],
+                [
+                    "0.019117",
+                    "672448"
+                ]
+            ]
+        }
+        
+
+### Получение методаты по бирже [GET]        
+
+URL: [localhost:8080/orderBook?symbol=HOTUSDT&limit=10]
++ Response 200 (application/json)
+
+        {
+            "currencyPairs": {
+                "RAYUSDT": {
+                    "minBaseAmount": 0.223,
+                    "maxBaseAmount": 100000,
+                    "minCounterAmount": 0.1,
+                    "basePrecision": 8,
+                    "counterPrecision": 1
+                },
+            },
+            "currencies": {
+                "MATIC": {
+                    "withdrawalFee": 0.040000,
+                    "minWithdrawal": 0.10
+                },
+            }
+        }
