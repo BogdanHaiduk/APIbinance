@@ -1,0 +1,177 @@
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                    http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd">
+    <!-- Entity -->
+    <changeSet id ="1.0.0" author="bogdan.haiduk">
+        <createTable tableName="exhange_info">
+            <column name="id" type="VARCHAR(100)">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="timezone" type="VARCHAR(100)">
+            </column>
+            <column name="server_time" type="BIGINT">
+            </column>
+            <column name="futures_type" type="VARCHAR(100)">
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet id ="1.0.1" author="bogdan.haiduk">
+        <createTable tableName="symbol">
+            <column name="id" type="VARCHAR(100)" >
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="symbol" type="VARCHAR(100)">
+            </column>
+            <column name="pair" type="VARCHAR(100)">
+            </column>
+            <column name="contract_type" type="VARCHAR(100)">
+            </column>
+            <column name="delivery_date" type="BIGINT">
+            </column>
+            <column name="onboard_date" type="BIGINT">
+            </column>
+            <column name="status" type="VARCHAR(100)">
+            </column>
+            <column name="maint_margin_percent" type="DECIMAL">
+            </column>
+            <column name="required_margin_percent" type="DECIMAL">
+            </column>
+            <column name="base_asset" type="VARCHAR(100)">
+            </column>
+            <column name="quote_asset" type="VARCHAR(100)">
+            </column>
+            <column name="margin_asset" type="VARCHAR(100)">
+            </column>
+            <column name="price_precision" type="INT">
+            </column>
+            <column name="quantity_precision" type="INT">
+            </column>
+            <column name="base_asset_precision" type="INT">
+            </column>
+            <column name="quote_precision" type="INT">
+            </column>
+            <column name="underlying_type" type="VARCHAR(100)">
+            </column>
+            <column name="settle_plan" type="INT">
+            </column>
+            <column name="trigger_protect" type="DECIMAL">
+            </column>
+            <column name="liquidation_fee" type="DECIMAL">
+            </column>
+            <column name="market_take_bound" type="DECIMAL">
+            </column>
+            <column name="id_exhange_info3" type="VARCHAR(100)">
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet id ="1.0.2" author="bogdan.haiduk">
+        <createTable tableName="asset">
+            <column name="id" type="VARCHAR(100)">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="asset" type="VARCHAR(100)">
+            </column>
+            <column name="margin_available" type="BOOLEAN">
+            </column>
+            <column name="auto_asset_exchange" type="INT">
+            </column>
+            <column name="id_exhange_info1" type="VARCHAR(100)">
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet id ="1.0.3" author="bogdan.haiduk">
+        <createTable tableName="rate_limit">
+            <column name="id" type="VARCHAR(100)">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="rate_limit_type" type="VARCHAR(100)">
+            </column>
+            <column name="interval" type="VARCHAR(100)">
+            </column>
+            <column name="interval_num" type="INT">
+            </column>
+            <column name="limit_int" type="INT">
+            </column>
+            <column name="id_exhange_info2" type="VARCHAR(100)">
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet id ="1.0.4" author="bogdan.haiduk">
+        <createTable tableName="filter_table">
+            <column name="id" type="VARCHAR(100)">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="min_price" type="DECIMAL">
+            </column>
+            <column name="max_price" type="DECIMAL">
+            </column>
+            <column name="filter_type" type="VARCHAR(100)">
+            </column>
+            <column name="tick_size" type="DECIMAL">
+            </column>
+            <column name="step_size" type="DECIMAL">
+            </column>
+            <column name="max_qty" type="DECIMAL">
+            </column>
+            <column name="min_qty" type="DECIMAL">
+            </column>
+            <column name="limit_for_filter" type="INT">
+            </column>
+            <column name="multiplier_down" type="DECIMAL">
+            </column>
+            <column name="multiplier_up" type="DECIMAL">
+            </column>
+            <column name="multiplier_decimal" type="DECIMAL">
+            </column>
+            <column name="id_symbols" type="VARCHAR(100)">
+            </column>
+        </createTable>
+    </changeSet>
+
+    <!-- FK -->
+    <changeSet id ="1.0.5" author="bogdan.haiduk">
+        <addForeignKeyConstraint baseColumnNames="id_exhange_info1"
+                                 baseTableName="asset"
+                                 constraintName="fk_asset_id_exhange_info1"
+                                 onDelete="CASCADE"
+                                 onUpdate="RESTRICT"
+                                 referencedColumnNames="id"
+                                 referencedTableName="exhange_info"/>
+    </changeSet>
+
+    <changeSet id ="1.0.6" author="bogdan.haiduk">
+        <addForeignKeyConstraint baseColumnNames="id_exhange_info2"
+                                 baseTableName="rate_limit"
+                                 constraintName="fk_rate_limit_id_exhange_info2"
+                                 onDelete="CASCADE"
+                                 onUpdate="RESTRICT"
+                                 referencedColumnNames="id"
+                                 referencedTableName="exhange_info"/>
+    </changeSet>
+
+    <changeSet id ="1.0.7" author="bogdan.haiduk">
+        <addForeignKeyConstraint baseColumnNames="id_exhange_info3"
+                                 baseTableName="symbol"
+                                 constraintName="fk_symbol_id_exhange_info3"
+                                 onDelete="CASCADE"
+                                 onUpdate="RESTRICT"
+                                 referencedColumnNames="id"
+                                 referencedTableName="exhange_info"/>
+    </changeSet>
+
+    <changeSet id ="1.0.8" author="bogdan.haiduk">
+        <addForeignKeyConstraint baseColumnNames="id_symbols"
+                                 baseTableName="filter_table"
+                                 constraintName="fk_filter_table_id_symbols"
+                                 onDelete="CASCADE"
+                                 onUpdate="RESTRICT"
+                                 referencedColumnNames="id"
+                                 referencedTableName="symbol"/>
+    </changeSet>
+
+</databaseChangeLog>
